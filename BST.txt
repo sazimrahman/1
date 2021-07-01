@@ -1,0 +1,123 @@
+#include <iostream>
+using namespace std;
+
+typedef struct TreeNode
+{
+    int data;
+    struct TreeNode *left, *right;
+}*nodeptr;
+
+nodeptr root=NULL;
+
+void makeRoot(int item)
+{
+    root = new TreeNode;
+    root->data=item;
+    root->left=NULL;
+    root->right=NULL;
+}
+void makeNode(int item)
+{
+    nodeptr p=root;
+
+    nodeptr node= new TreeNode;
+    node->data=item;
+    node->left=NULL;
+    node->right=NULL;
+
+    while(p!=NULL)
+    {
+        if(p->data == item)
+        {
+            cout<<"Duplicate value.. Enter new value: ";
+            cin>>item;
+            node->data=item;
+            p=root;
+        }
+        else if(item<p->data)
+        {
+            if(p->left == NULL)
+            {
+                p->left=node;
+                break;
+            }
+            else
+            {
+                p=p->left;
+            }
+        }
+        else
+        {
+            if(p->right == NULL)
+            {
+                p->right=node;
+                break;
+            }
+            else
+            {
+                p=p->right;
+            }
+        }
+    }
+}
+
+void inorderTraversal(nodeptr p)
+{
+    if(p!=NULL)
+    {
+        inorderTraversal(p->left);
+        cout<<p->data<<" ";
+        inorderTraversal(p->right);
+    }
+}
+
+void postorderTraversal(nodeptr p)
+{
+    if(p!=NULL)
+    {
+        postorderTraversal(p->left);
+        postorderTraversal(p->right);
+        cout<<p->data<<" ";
+    }
+}
+void preorderTraversal(nodeptr p)
+{
+    if(p!=NULL)
+    {
+        cout<<p->data<<" ";
+        preorderTraversal(p->left);
+        preorderTraversal(p->right);
+    }
+}
+
+int main()
+{
+    int x;
+    while(1)
+    {
+        cout<<"Enter value or 0 for exit: ";
+        cin>>x;
+        if(x==0)
+        {
+            break;
+        }
+        else
+        {
+            if(root==NULL)
+            {
+                makeRoot(x);
+            }
+            else
+            {
+                makeNode(x);
+            }
+        }
+    }
+
+    cout<<"In order Traversal"<<endl;
+    inorderTraversal(root);
+    cout<<endl<<"Post order Traversal"<<endl;
+    postorderTraversal(root);
+    cout<<endl<<"Pre order Traversal"<<endl;
+    preorderTraversal(root);
+}

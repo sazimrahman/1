@@ -1,0 +1,135 @@
+#include <iostream>
+using namespace std;
+
+void print(int arr[],int p)
+{
+    int i;
+    cout<<"Printing..."<<endl;
+    for(i=0;i<p;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    int Size,n,i,item,k;
+
+    cout<<"Enter array size: ";
+    cin>>Size;
+    int a[Size];
+    cout<<"Enter number of elements: ";
+    cin>>n;
+    cout<<"Enter the elements: ";
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    print(a,n);
+    cout<<"Insertion at the last: "<<endl;
+    cout<<"Enter value to insert: ";
+    cin>>item;
+    a[n]=item;
+    n++;
+    print(a,n);
+    cout<<"Insertion at Middle: "<<endl;
+    cout<<"Which index you want to insert?"<<endl;
+    cin>>k;
+    cout<<"Enter value to insert: ";
+    cin>>item;
+    for(i=n-1;i>=k;i--)
+    {
+        a[i+1]=a[i];
+    }
+    a[k]=item;
+    n++;
+    print(a,n);
+    cout<<"Insertion at First: "<<endl;
+    cout<<"Enter value to insert: ";
+    cin>>item;
+    for(i=n-1;i>=0;i--)
+    {
+        a[i+1]=a[i];
+    }
+    a[0]=item;
+    n++;
+    print(a,n);
+    cout<<"Deletion at Last:"<<endl;
+    a[n-1]=NULL;
+    n--;
+    print(a,n);
+    cout<<"Deletion at Middle:"<<endl;
+    cout<<"Which index value you want to delete?";
+    cin>>k;
+    for(i=k;i<n;i++)
+    {
+        a[i]=a[i+1];
+    }
+    a[n-1]=NULL;
+    n--;
+    print(a,n);
+    cout<<"Deletion at First:"<<endl;
+    for(i=0;i<n;i++)
+    {
+        a[i]=a[i+1];
+    }
+    a[n-1]=NULL;
+    n--;
+    print(a,n);
+}
+
+################
+
+#include <iostream>
+using namespace std;
+
+void Swap(int &m,int &n)
+{
+    int t;
+    t=m;
+    m=n;
+    n=t;
+}
+
+int main()
+{
+    int a,b;
+    cout<<"Enter integer value for a: ";
+    cin>>a;
+    cout<<"Enter integer value for b: ";
+    cin>>b;
+
+    Swap(a,b);
+
+    cout<<"After Swapping..."<<endl;
+    cout<<a<<" "<<b<<endl;
+}
+
+#####################
+
+#include <iostream>
+using namespace std;
+
+void Swap(int *m,int *n)
+{
+    int t;
+    t=*m;
+    *m=*n;
+    *n=t;
+
+}
+
+int main()
+{
+    int a,b;
+    cout<<"Enter integer value for a: ";
+    cin>>a;
+    cout<<"Enter integer value for b: ";
+    cin>>b;
+
+    Swap(&a,&b);
+
+    cout<<"After Swapping..."<<endl;
+    cout<<a<<" "<<b<<endl;
+}
